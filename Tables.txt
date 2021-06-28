@@ -1,0 +1,59 @@
+create table product_details_tbl(
+   id INT NOT NULL AUTO_INCREMENT DEFAULT 0, 
+   product_id VARCHAR(256) NOT NULL UNIQUE ,
+   product_name VARCHAR(256) NOT NULL UNIQUE,
+   product_discription VARCHAR(256) NOT NULL,
+   warranty_days INT ,
+   warranty_applicable BOOLEAN ,
+   manufacture_date Date ,
+   purchase_price DOUBLE ,
+   selling_price DOUBLE ,
+   discount DOUBLE ,
+   quantity INT  ,
+   
+   PRIMARY KEY (id)
+);
+
+
+
+create table customer_details_tbl(
+   customer_id INT  NOT NULL ,
+   customer_name VARCHAR(256) NOT NULL ,
+   phone_number INT(12),
+   alternate_phone_number INT(12),
+   email VARCHAR(256) UNIQUE,
+   address INT ,
+   
+   PRIMARY KEY (customer_id)
+);
+
+
+create table payment_mode_tbl(
+   payment_mode_id INT AUTO_INCREMENT,
+   payment_mode_name VARCHAR(256) NOT NULL unique ,
+   
+   PRIMARY KEY (payment_mode_id)
+);
+
+create table purchase_details_tbl(
+   purchase_id INT AUTO_INCREMENT,
+   product_id INT ,
+   customer_id INT,
+   payment_mode_id  INT,
+   emi_applicable BOOLEAN,
+  purchase_amount DOUBLE,
+  payment_id  INT,
+   
+   PRIMARY KEY (purchase_id),
+   FOREIGN KEY (product_id) REFERENCES product_details_tbl(product_id),
+   FOREIGN KEY (payment_mode_id) REFERENCES payment_mode_tbl(payment_mode_id)
+);
+
+create table cheque_tbl(
+   account_nubmner varchar(256),
+   cheque_number varchar(256),
+   bank_name varchar(256),
+   ifsc varchar(256)
+   
+);
+
